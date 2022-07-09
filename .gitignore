@@ -13,3 +13,12 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Folders
+_obj
+_test
+
+# Editor files
+.idea/
+*.iml
+*.swp
