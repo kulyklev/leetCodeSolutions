@@ -1,1 +1,1 @@
-package solutions
+package main
