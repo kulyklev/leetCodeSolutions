@@ -22,6 +22,10 @@ func isMatch(s string, p string) bool {
 		runeToMatch = patternRune
 
 		if patternRune == zeroOrMore {
+			if pi+1 > len(revP) {
+				return false
+			}
+
 			runeToMatch = revP[pi+1]
 
 			if firstTimeZeroOrMore {
