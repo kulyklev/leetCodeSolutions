@@ -19,10 +19,6 @@ func isMatch(s string, p string) bool {
 			patternRune = revP[pi]
 		}
 
-		if si < len(revS)-1 {
-			strRune = revS[si]
-		}
-
 		runeToMatch = patternRune
 
 		if patternRune == zeroOrMore {
@@ -37,6 +33,10 @@ func isMatch(s string, p string) bool {
 			}
 
 			firstTimeZeroOrMore = true
+		}
+
+		if si < len(revS)-1 {
+			strRune = revS[si]
 		}
 
 		switch {
