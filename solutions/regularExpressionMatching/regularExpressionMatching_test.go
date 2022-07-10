@@ -16,7 +16,7 @@ func TestIsMatch(t *testing.T) {
 			"no pattern match":                 testNoPatternMatch,
 			"no pattern mismatch":              testNoPatternMismatch,
 			"match one single character":       testMatchSingleCharacter,
-			"match multiple single characters": testMatchMultipleSingleCharacters,
+			"match multiple single characters": testMatchMultipleCharacters,
 		} {
 			t.Run(scenario, func(t *testing.T) {
 				fn(t)
@@ -43,6 +43,7 @@ func testNoPatternMatch(t *testing.T) {
 	}
 }
 
+// This case is tricky
 func testNoPatternMismatch(t *testing.T) {
 
 	testID := 0
@@ -78,7 +79,7 @@ func testMatchSingleCharacter(t *testing.T) {
 	}
 }
 
-func testMatchMultipleSingleCharacters(t *testing.T) {
+func testMatchMultipleCharacters(t *testing.T) {
 
 	type testCases struct {
 		description  string
@@ -88,7 +89,7 @@ func testMatchMultipleSingleCharacters(t *testing.T) {
 	}
 
 	testID := 0
-	t.Logf("\t\tTest %d:\tWhen matching pattern with multiple signle characters.", testID)
+	t.Logf("\t\tTest %d:\tWhen matching pattern with different patterns with placeholders.", testID)
 	{
 		for _, scenario := range []testCases{
 			{
@@ -108,6 +109,42 @@ func testMatchMultipleSingleCharacters(t *testing.T) {
 				inputString:  "cabd",
 				inputPattern: ".ab.",
 				expected:     true,
+			},
+			{
+				description:  "Base zero or many place holders",
+				inputString:  "aa",
+				inputPattern: "a*",
+				expected:     true,
+			},
+			{
+				description:  "Zero or many place holders 1",
+				inputString:  "aaaaa",
+				inputPattern: "a*",
+				expected:     true,
+			},
+			{
+				description:  "Zero or many place holders 2",
+				inputString:  "asdfbvxcgyurtfghj",
+				inputPattern: ".*",
+				expected:     true,
+			},
+			{
+				description:  "Zero or many place holders 3",
+				inputString:  "tab",
+				inputPattern: ".abc*",
+				expected:     true,
+			},
+			{
+				description:  "Duplicate chars without placeholders",
+				inputString:  "aa",
+				inputPattern: "a",
+				expected:     false,
+			},
+			{
+				description:  "Mississippi case",
+				inputString:  "mississippi",
+				inputPattern: "mis*is*p*.",
+				expected:     false,
 			},
 		} {
 			t.Run(scenario.description, func(t *testing.T) {
