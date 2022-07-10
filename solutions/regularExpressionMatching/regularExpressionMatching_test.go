@@ -149,7 +149,7 @@ func testMatchMultipleCharacters(t *testing.T) {
 			{
 				description:  "Mississippi case 2",
 				inputString:  "mississippi",
-				inputPattern: "mis*is*p*.",
+				inputPattern: "mis*is*ip*.",
 				expected:     true,
 			},
 		} {
