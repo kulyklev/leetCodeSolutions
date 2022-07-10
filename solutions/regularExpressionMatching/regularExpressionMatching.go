@@ -1,8 +1,5 @@
 package regularExpressionMatching
 
-//"mississippi", // 3, second 46
-//"mis*is*Ip*.", // 3-4
-
 func isMatch(s string, p string) bool {
 	const zeroOrMore = '*' // 42
 	const oneChar = '.'    // 46
@@ -15,6 +12,7 @@ func isMatch(s string, p string) bool {
 	var patternRune uint8
 	var strRune uint8
 	var runeToMatch uint8
+	var firstTimeZeroOrMore bool
 
 	for {
 		if pi < len(revP)-1 {
@@ -28,14 +26,17 @@ func isMatch(s string, p string) bool {
 		runeToMatch = patternRune
 
 		if patternRune == zeroOrMore {
-			runeToMatch = p[pi+1]
+			runeToMatch = revP[pi+1]
 
-			if si < len(revS)-1 {
-				// TODO this skips first char
-				si++
-			} else {
-				return true
+			if firstTimeZeroOrMore {
+				if si < len(revS)-1 {
+					si++
+				} else {
+					return true
+				}
 			}
+
+			firstTimeZeroOrMore = true
 		}
 
 		switch {
@@ -51,7 +52,8 @@ func isMatch(s string, p string) bool {
 			}
 		default:
 			if patternRune == zeroOrMore {
-				pi++
+				pi = pi + 2
+				firstTimeZeroOrMore = false
 				continue
 			}
 
