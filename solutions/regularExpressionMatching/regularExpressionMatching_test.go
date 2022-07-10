@@ -147,6 +147,12 @@ func testMatchMultipleCharacters(t *testing.T) {
 				expected:     false,
 			},
 			{
+				description:  "Zero or many place holders 6",
+				inputString:  "aaa",
+				inputPattern: "aaaa",
+				expected:     false,
+			},
+			{
 				description:  "Duplicate chars without placeholders",
 				inputString:  "aa",
 				inputPattern: "a",

@@ -13,6 +13,7 @@ func isMatch(s string, p string) bool {
 	var strRune uint8
 	var runeToMatch uint8
 	var firstTimeZeroOrMore bool
+	var isDirty bool
 
 	for {
 		if pi < len(revP)-1 {
@@ -31,6 +32,7 @@ func isMatch(s string, p string) bool {
 			if firstTimeZeroOrMore {
 				if si < len(revS)-1 {
 					si++
+					isDirty = false
 				} else {
 					return true
 				}
@@ -43,32 +45,38 @@ func isMatch(s string, p string) bool {
 			strRune = revS[si]
 		}
 
-		switch {
-		case strRune == runeToMatch || patternRune == oneChar || runeToMatch == oneChar:
+		// =============================================================================================================
+		// Comparing string with placeholders
+
+		if strRune == runeToMatch || patternRune == oneChar || runeToMatch == oneChar {
 			if patternRune != zeroOrMore && pi != len(revP) {
 				pi++
+				isDirty = true
 			}
 
 			if si != len(revS) {
 				si++
+				isDirty = false
 			}
-
-			if pi == len(revP) && si == len(revS) {
-				return true
-			}
-
-			if pi == len(revP) {
-				return false
-			}
-		default:
-			if patternRune == zeroOrMore {
-				pi = pi + 2
-				firstTimeZeroOrMore = false
-				continue
-			}
-
+		} else if patternRune == zeroOrMore {
+			pi = pi + 2
+			isDirty = true
+			firstTimeZeroOrMore = false
+			continue
+		} else {
 			return false
 		}
+
+		if pi == len(revP) && si == len(revS) && !isDirty {
+			return true
+		}
+
+		if pi == len(revP) {
+			return false
+		}
+
+		// End of comparing
+		// =============================================================================================================
 	}
 }
 
