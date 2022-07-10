@@ -146,6 +146,12 @@ func testMatchMultipleCharacters(t *testing.T) {
 				inputPattern: "mis*is*p*.",
 				expected:     false,
 			},
+			{
+				description:  "Mississippi case 2",
+				inputString:  "mississippi",
+				inputPattern: "mis*is*p*.",
+				expected:     true,
+			},
 		} {
 			t.Run(scenario.description, func(t *testing.T) {
 				actual := isMatch(scenario.inputString, scenario.inputPattern)
