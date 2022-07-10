@@ -41,11 +41,13 @@ func isMatch(s string, p string) bool {
 
 		switch {
 		case strRune == runeToMatch || patternRune == oneChar || runeToMatch == oneChar:
-			if patternRune != zeroOrMore {
+			if patternRune != zeroOrMore && pi != len(revP) {
 				pi++
 			}
 
-			si++
+			if si != len(revS) {
+				si++
+			}
 
 			if pi == len(revP) && si == len(revS) {
 				return true
