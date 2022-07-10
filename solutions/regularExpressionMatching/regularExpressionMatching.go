@@ -23,7 +23,7 @@ func isMatch(s string, p string) bool {
 		runeToMatch = patternRune
 
 		if patternRune == zeroOrMore {
-			if pi+1 > len(revP) {
+			if pi+1 >= len(revP) {
 				return false
 			}
 
