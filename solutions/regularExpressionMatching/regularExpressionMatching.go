@@ -52,6 +52,10 @@ func isMatch(s string, p string) bool {
 			if pi == len(revP) && si == len(revS) {
 				return true
 			}
+
+			if pi == len(revP) {
+				return false
+			}
 		default:
 			if patternRune == zeroOrMore {
 				pi = pi + 2
