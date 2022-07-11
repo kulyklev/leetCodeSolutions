@@ -16,7 +16,7 @@ func isMatch(s string, p string) bool {
 	var isDirty bool
 
 	for {
-		if pi < len(revP)-1 {
+		if pi <= len(revP)-1 {
 			patternRune = revP[pi]
 		}
 
@@ -41,7 +41,7 @@ func isMatch(s string, p string) bool {
 			firstTimeZeroOrMore = true
 		}
 
-		if si < len(revS)-1 {
+		if si <= len(revS)-1 {
 			strRune = revS[si]
 		}
 

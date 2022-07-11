@@ -13,69 +13,12 @@ func TestIsMatch(t *testing.T) {
 	t.Log("Given the need to check regexp match.")
 	{
 		for scenario, fn := range map[string]func(t *testing.T){
-			"no pattern match":                 testNoPatternMatch,
-			"no pattern mismatch":              testNoPatternMismatch,
-			"match one single character":       testMatchSingleCharacter,
 			"match multiple single characters": testMatchMultipleCharacters,
 		} {
 			t.Run(scenario, func(t *testing.T) {
 				fn(t)
 			})
 		}
-	}
-}
-
-func testNoPatternMatch(t *testing.T) {
-
-	testID := 0
-	t.Logf("\t\tTest %d:\tWhen matching without pattern.", testID)
-	{
-		inputString := "qwe"
-		pattern := "qwe"
-		got := isMatch(inputString, pattern)
-		want := true
-
-		if got != want {
-			t.Fatalf("\t%s\tTest %d:\tExpected: %t. String: %s. Does not match: %s", failed, testID, want, inputString, pattern)
-		}
-
-		t.Logf("\t%s\tTest %d:\tString matches pattern.", success, testID)
-	}
-}
-
-// This case is tricky
-func testNoPatternMismatch(t *testing.T) {
-
-	testID := 0
-	t.Logf("\t\tTest %d:\tWhen not matching without pattern.", testID)
-	{
-		inputString := "qwe"
-		pattern := "qwerty"
-		got := isMatch(inputString, pattern)
-		want := false
-
-		if got != want {
-			t.Fatalf("\t%s\tTest %d:\tExpected: %t. String: %s. Match pattern: %s", failed, testID, want, inputString, pattern)
-		}
-
-		t.Logf("\t%s\tTest %d:\tString mismatches.", success, testID)
-	}
-}
-
-func testMatchSingleCharacter(t *testing.T) {
-	testID := 0
-	t.Logf("\t\tTest %d:\tWhen matching pattern with singe character.", testID)
-	{
-		inputString := "a"
-		pattern := "."
-		got := isMatch(inputString, pattern)
-		want := true
-
-		if got != want {
-			t.Fatalf("\t%s\tTest %d:\tExpected: %t. String: \"%s\" should match pattern: \"%s\".", failed, testID, want, inputString, pattern)
-		}
-
-		t.Logf("\t%s\tTest %d:\tPattern matches.", success, testID)
 	}
 }
 
@@ -92,6 +35,24 @@ func testMatchMultipleCharacters(t *testing.T) {
 	t.Logf("\t\tTest %d:\tWhen matching pattern with different patterns with placeholders.", testID)
 	{
 		for _, scenario := range []testCases{
+			{
+				description:  "No pattern match",
+				inputString:  "qwe",
+				inputPattern: "qwe",
+				expected:     true,
+			},
+			{
+				description:  "No pattern mismatch.",
+				inputString:  "qwe",
+				inputPattern: "qwerty",
+				expected:     false,
+			},
+			{
+				description:  "Match single character",
+				inputString:  "a",
+				inputPattern: ".",
+				expected:     true,
+			},
 			{
 				description:  "Two duplicate chars",
 				inputString:  "aa",
@@ -157,6 +118,12 @@ func testMatchMultipleCharacters(t *testing.T) {
 				inputString:  "aaa",
 				inputPattern: "ab*a",
 				expected:     false,
+			},
+			{
+				description:  "Zero or many place holders 8",
+				inputString:  "aaa",
+				inputPattern: "ab*ac*a",
+				expected:     true,
 			},
 			{
 				description:  "Duplicate chars without placeholders",
