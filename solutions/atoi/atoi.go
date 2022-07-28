@@ -49,7 +49,7 @@ func NewMyAtoiCmd() *MyAtoiCmd {
 		fmt.Println(aurora.BrightRed("Description:"))
 		fmt.Println("\t", myAtoiCmd.description)
 		fmt.Println(aurora.BrightRed("Usage:"))
-		fmt.Println("\tmigrate [options]")
+		fmt.Println("\tatoi [options]")
 		fmt.Println(aurora.BrightRed("Options:"))
 		fmt.Println(optionsTable.String())
 	}

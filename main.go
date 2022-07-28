@@ -4,6 +4,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"github.com/kulyklev/leetCodeSolutions/solutions/regularExpressionMatching"
 	"os"
 
 	"github.com/alexeyco/simpletable"
@@ -43,12 +44,13 @@ func run(log *zap.SugaredLogger) error {
 
 	cmds := []solutions.Runner{
 		atoi.NewMyAtoiCmd(),
+		regularExpressionMatching.NewRegularExpressionMatchingCmd(),
 	}
 
 	// =================================================================================================================
 	// Help
 
-	if len(os.Args) < 1 {
+	if len(os.Args) < 2 {
 		return displayHelp(cmds)
 	}
 

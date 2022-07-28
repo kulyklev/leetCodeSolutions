@@ -6,6 +6,12 @@ SHELL := /bin/bash
 atoi:
 	go run main.go atoi
 
+regexpMatch:
+	go run main.go regexpMatch
+
+help:
+	go run main.go
+
 # ======================================================================================================================
 # Modules support
 

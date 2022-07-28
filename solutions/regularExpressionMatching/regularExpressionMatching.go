@@ -1,5 +1,93 @@
 package regularExpressionMatching
 
+import (
+	"flag"
+	"fmt"
+	"github.com/alexeyco/simpletable"
+	"github.com/logrusorgru/aurora/v3"
+	"os"
+)
+
+type MyRegularExpressionMatchingCmd struct {
+	description string
+	fs          *flag.FlagSet
+	helpFlag    bool
+}
+
+func NewRegularExpressionMatchingCmd() *MyRegularExpressionMatchingCmd {
+	myRegExpMatchingCmd := &MyRegularExpressionMatchingCmd{
+		description: "https://leetcode.com/problems/regular-expression-matching/",
+		fs:          flag.NewFlagSet("regexpMatch", flag.ContinueOnError),
+	}
+
+	// Here we specify flags
+	myRegExpMatchingCmd.fs.BoolVar(&myRegExpMatchingCmd.helpFlag, "h", false, "Display help for the given command. When no command is given display help for the list command")
+
+	//Custom usage
+	myRegExpMatchingCmd.fs.Usage = func() {
+
+		// Options section
+		optionsTable := simpletable.New()
+
+		myRegExpMatchingCmd.fs.VisitAll(func(f *flag.Flag) {
+			r := []*simpletable.Cell{
+				{Align: simpletable.AlignLeft, Text: aurora.Green(fmt.Sprintf("-%s", f.Name)).String()},
+				{Align: simpletable.AlignLeft, Text: f.Usage},
+			}
+
+			optionsTable.Body.Cells = append(optionsTable.Body.Cells, r)
+		})
+
+		optionsTable.SetStyle(simpletable.StyleCompactLite)
+
+		// Printing help
+		fmt.Println(aurora.BrightRed("Description:"))
+		fmt.Println("\t", myRegExpMatchingCmd.description)
+		fmt.Println(aurora.BrightRed("Usage:"))
+		fmt.Println("\tregExpMatching [options]")
+		fmt.Println(aurora.BrightRed("Options:"))
+		fmt.Println(optionsTable.String())
+	}
+
+	return myRegExpMatchingCmd
+}
+
+func (m MyRegularExpressionMatchingCmd) Init(args []string) error {
+	return m.fs.Parse(args)
+}
+
+func (m MyRegularExpressionMatchingCmd) Run() error {
+	if m.helpFlag {
+		m.fs.Usage()
+		os.Exit(0)
+	}
+
+	var s string
+	var pattern string
+	fmt.Println("Enter string to check: ")
+	fmt.Scanln(&s)
+	fmt.Println("Enter pattern to match: ")
+	fmt.Scanln(&pattern)
+
+	return callIsMatch(s, pattern)
+}
+
+func (m MyRegularExpressionMatchingCmd) Name() string {
+	return m.fs.Name()
+}
+
+func (m MyRegularExpressionMatchingCmd) Description() string {
+	return m.description
+}
+
+func callIsMatch(input, pattern string) error {
+	res := isMatch(input, pattern)
+	fmt.Println("Result: ")
+	fmt.Println(res)
+
+	return nil
+}
+
 func isMatch(s string, p string) bool {
 	const zeroOrMore = '*' // 42
 	const oneChar = '.'    // 46
