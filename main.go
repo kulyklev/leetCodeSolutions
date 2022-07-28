@@ -91,8 +91,6 @@ func newLogger(service string) (*zap.SugaredLogger, error) {
 }
 
 func displayHelp(cmds []solutions.Runner) error {
-	fmt.Println("\n")
-
 	// =================================================================================================================
 	// Options sections
 

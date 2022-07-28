@@ -24,6 +24,9 @@ help:
 test:
 	go test ./... -count=1
 
+test1:
+	go test -v ./...
+
 check:
 	staticcheck -checks=all ./...
 
