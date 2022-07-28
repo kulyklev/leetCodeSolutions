@@ -4,6 +4,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"github.com/kulyklev/leetCodeSolutions/solutions/palindromeNumber"
 	"github.com/kulyklev/leetCodeSolutions/solutions/regularExpressionMatching"
 	"os"
 
@@ -45,6 +46,7 @@ func run(log *zap.SugaredLogger) error {
 	cmds := []solutions.Runner{
 		atoi.NewMyAtoiCmd(),
 		regularExpressionMatching.NewRegularExpressionMatchingCmd(),
+		palindromeNumber.NewPalindromeNumCmd(),
 	}
 
 	// =================================================================================================================

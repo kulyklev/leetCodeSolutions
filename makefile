@@ -9,6 +9,9 @@ atoi:
 regexpMatch:
 	go run main.go regexpMatch
 
+isPalindromeNum:
+	go run main.go isPalindromeNum
+
 help:
 	go run main.go
 
