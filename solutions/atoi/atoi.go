@@ -67,9 +67,11 @@ func (m MyAtoiCmd) Run() error {
 		os.Exit(0)
 	}
 
-	//TODO ask for input
+	var s string
+	fmt.Println("Enter string to convert it to int: ")
+	fmt.Scanln(&s)
 
-	return callAtoi("1234")
+	return callAtoi(s)
 }
 
 func (m MyAtoiCmd) Name() string {
@@ -80,8 +82,11 @@ func (m MyAtoiCmd) Description() string {
 	return m.description
 }
 
-func callAtoi(string2 string) error {
-	//TODO implement me
+func callAtoi(s string) error {
+	res := myAtoi(s)
+	fmt.Println("Result: ")
+	fmt.Println(res)
+
 	return nil
 }
 
