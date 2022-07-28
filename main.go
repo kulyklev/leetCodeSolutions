@@ -4,13 +4,14 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/kulyklev/leetCodeSolutions/solutions/palindromeNumber"
-	"github.com/kulyklev/leetCodeSolutions/solutions/regularExpressionMatching"
 	"os"
 
 	"github.com/alexeyco/simpletable"
 	"github.com/kulyklev/leetCodeSolutions/solutions"
 	"github.com/kulyklev/leetCodeSolutions/solutions/atoi"
+	"github.com/kulyklev/leetCodeSolutions/solutions/palindromeNumber"
+	"github.com/kulyklev/leetCodeSolutions/solutions/regularExpressionMatching"
+	"github.com/kulyklev/leetCodeSolutions/solutions/reverseInteger"
 	"github.com/logrusorgru/aurora/v3"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -47,6 +48,7 @@ func run(log *zap.SugaredLogger) error {
 		atoi.NewMyAtoiCmd(),
 		regularExpressionMatching.NewRegularExpressionMatchingCmd(),
 		palindromeNumber.NewPalindromeNumCmd(),
+		reverseInteger.NewReverseIntCmd(),
 	}
 
 	// =================================================================================================================

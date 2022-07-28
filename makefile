@@ -12,6 +12,9 @@ regexpMatch:
 isPalindromeNum:
 	go run main.go isPalindromeNum
 
+reverseInt:
+	go run main.go reverseInt
+
 help:
 	go run main.go
 

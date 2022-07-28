@@ -18,7 +18,7 @@ type PalindromeNumCmd struct {
 
 func NewPalindromeNumCmd() *PalindromeNumCmd {
 	palindromeNumCmd := &PalindromeNumCmd{
-		description: "https://leetcode.com/problems/string-to-integer-atoi/",
+		description: "https://leetcode.com/problems/palindrome-number/",
 		fs:          flag.NewFlagSet("isPalindromeNum", flag.ContinueOnError),
 	}
 
