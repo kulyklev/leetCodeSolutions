@@ -1,6 +1,12 @@
 SHELL := /bin/bash
 
 # ======================================================================================================================
+# Commands for benchmarking
+# go test -run none -bench . -benchmem -memprofile p.out
+# go test -run none -bench . -benchmem -cpuprofile p.out
+# go tool pprof containerWithMostWater.test p.out
+
+# ======================================================================================================================
 # Call solutions
 
 atoi:
