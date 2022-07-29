@@ -100,10 +100,10 @@ func maxArea(height []int) int {
 	for left < right {
 		width = right - left
 
-		if left > right {
-			h = right
+		if height[left] > height[right] {
+			h = height[right]
 		} else {
-			h = left
+			h = height[left]
 		}
 
 		tmp = h * width

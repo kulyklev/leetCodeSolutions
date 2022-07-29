@@ -55,7 +55,7 @@ func Test_maxArea(t *testing.T) {
 	{
 		for _, tt := range tests {
 			t.Run(tt.name, func(t *testing.T) {
-				if got := maxArea1(tt.args.height); got != tt.want {
+				if got := maxArea(tt.args.height); got != tt.want {
 					t.Errorf("\t%s\tTest %d:\tmaxArea() =: %v, want: %v", failed, testID, got, tt.want)
 				} else {
 					t.Logf("\t%s\tTest %d:\tFound container with most water.", success, testID)
