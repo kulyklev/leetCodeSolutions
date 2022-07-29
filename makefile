@@ -21,6 +21,9 @@ isPalindromeNum:
 reverseInt:
 	go run main.go reverseInt
 
+cwmw:
+	go run main.go cwmw
+
 help:
 	go run main.go
 

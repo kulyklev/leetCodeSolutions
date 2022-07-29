@@ -4,6 +4,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"github.com/kulyklev/leetCodeSolutions/solutions/containerWithMostWater"
 	"os"
 
 	"github.com/alexeyco/simpletable"
@@ -49,6 +50,7 @@ func run(log *zap.SugaredLogger) error {
 		regularExpressionMatching.NewRegularExpressionMatchingCmd(),
 		palindromeNumber.NewPalindromeNumCmd(),
 		reverseInteger.NewReverseIntCmd(),
+		containerWithMostWater.NewCwmwCmd(),
 	}
 
 	// =================================================================================================================

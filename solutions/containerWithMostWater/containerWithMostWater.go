@@ -63,12 +63,14 @@ func (c CwmwCmd) Run() error {
 		os.Exit(0)
 	}
 
-	// TODO scan array
-	var s string
-	fmt.Println("Enter string to convert it to int: ")
-	fmt.Scanln(&s)
+	var intsLen int
+	fmt.Println("Enter the length of slice: ")
+	fmt.Scanf("%d", &intsLen)
 
-	height := []int{1, 2, 3, 4}
+	height := make([]int, intsLen)
+	for i := 0; i < intsLen; i++ {
+		fmt.Scanf("%d", &height[i])
+	}
 
 	return callMaxArea(height)
 }
