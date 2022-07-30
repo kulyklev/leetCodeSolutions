@@ -24,6 +24,9 @@ reverseInt:
 cwmw:
 	go run main.go cwmw
 
+intToRomanCmd:
+	go run main.go intToRomanCmd
+
 help:
 	go run main.go
 

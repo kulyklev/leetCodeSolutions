@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/kulyklev/leetCodeSolutions/solutions/containerWithMostWater"
+	"github.com/kulyklev/leetCodeSolutions/solutions/integerToRoman"
 	"os"
 
 	"github.com/alexeyco/simpletable"
@@ -51,6 +52,7 @@ func run(log *zap.SugaredLogger) error {
 		palindromeNumber.NewPalindromeNumCmd(),
 		reverseInteger.NewReverseIntCmd(),
 		containerWithMostWater.NewCwmwCmd(),
+		integerToRoman.NewIntToRomanCmd(),
 	}
 
 	// =================================================================================================================
