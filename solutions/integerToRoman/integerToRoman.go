@@ -146,3 +146,32 @@ func reverse[S ~[]E, E any](s S) {
 		s[i], s[j] = s[j], s[i]
 	}
 }
+
+func intToRoman2(num int) string {
+	mapTable := map[int]string{
+		1000: "M",
+		900:  "CM",
+		500:  "D",
+		400:  "CD",
+		100:  "C",
+		90:   "XC",
+		50:   "L",
+		40:   "XL",
+		10:   "X",
+		9:    "IX",
+		5:    "V",
+		4:    "IV",
+		1:    "I",
+	}
+
+	var sb strings.Builder
+
+	for k, v := range mapTable {
+		for num >= k {
+			sb.WriteString(v)
+			num -= k
+		}
+	}
+
+	return sb.String()
+}
