@@ -108,26 +108,28 @@ func intToRoman(num int) string {
 
 	for num != 0 {
 		powerOfTen := int(math.Pow10(digit))
-		pop = num % 10
+		pop = num%10 - 1
 		num /= 10
 		first := powerOfTen / 10
 		second := powerOfTen / 2
 		third := powerOfTen
 
-		subMapTable := map[int]string{
-			1:  mapTable[first],
-			2:  mapTable[first] + mapTable[first],
-			3:  mapTable[first] + mapTable[first] + mapTable[first],
-			4:  mapTable[first] + mapTable[second],
-			5:  mapTable[second],
-			6:  mapTable[second] + mapTable[first],
-			7:  mapTable[second] + mapTable[first] + mapTable[first],
-			8:  mapTable[second] + mapTable[first] + mapTable[first] + mapTable[first],
-			9:  mapTable[first] + mapTable[third],
-			10: mapTable[third],
+		subMapTable := [10]string{
+			mapTable[first],
+			mapTable[first] + mapTable[first],
+			mapTable[first] + mapTable[first] + mapTable[first],
+			mapTable[first] + mapTable[second],
+			mapTable[second],
+			mapTable[second] + mapTable[first],
+			mapTable[second] + mapTable[first] + mapTable[first],
+			mapTable[second] + mapTable[first] + mapTable[first] + mapTable[first],
+			mapTable[first] + mapTable[third],
+			mapTable[third],
 		}
 
-		romeNums = append(romeNums, subMapTable[pop])
+		if pop >= 0 {
+			romeNums = append(romeNums, subMapTable[pop])
+		}
 		digit++
 	}
 
