@@ -3,11 +3,12 @@ package palindromeNumber
 import (
 	"flag"
 	"fmt"
-	"github.com/alexeyco/simpletable"
-	"github.com/logrusorgru/aurora/v3"
 	"math"
 	"os"
 	"strconv"
+
+	"github.com/alexeyco/simpletable"
+	"github.com/logrusorgru/aurora/v3"
 )
 
 type PalindromeNumCmd struct {

@@ -1,29 +1,46 @@
 package palindromeNumber
 
-import "testing"
+import (
+	"testing"
 
-func TestIsPalindromeNumber(t *testing.T) {
-	// Case 1
-	got := isPalindrome(121)
-	want := true
+	"github.com/stretchr/testify/assert"
+)
 
-	if got != want {
-		t.Errorf("got %t, want %t", got, want)
+func Test_isPalindrome(t *testing.T) {
+	type args struct {
+		num int
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "Case 1",
+			args: args{
+				num: 121,
+			},
+			want: true,
+		},
+		{
+			name: "Case 2",
+			args: args{
+				num: -121,
+			},
+			want: false,
+		},
+		{
+			name: "Case 3",
+			args: args{
+				num: 1234,
+			},
+			want: false,
+		},
 	}
 
-	// Case 2
-	got = isPalindrome(-121)
-	want = false
-
-	if got != want {
-		t.Errorf("got %t, want %t", got, want)
-	}
-
-	// Case 3
-	got = isPalindrome(1234)
-	want = false
-
-	if got != want {
-		t.Errorf("got %t, want %t", got, want)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.want, isPalindrome(tt.args.num))
+		})
 	}
 }
