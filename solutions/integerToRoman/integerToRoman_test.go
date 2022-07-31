@@ -2,6 +2,8 @@ package integerToRoman
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 // Success and failure markers.
@@ -127,13 +129,7 @@ func Test_intToRoman(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := intToRoman(tt.args.num); got != tt.want {
-				if got := intToRoman(tt.args.num); got != tt.want {
-					t.Errorf("\t%s\tTest %d:\tmaxArea() =: %v, want: %v", failed, 0, got, tt.want)
-				} else {
-					t.Logf("\t%s\tTest %d:\tFound container with most water.", success, 0)
-				}
-			}
+			assert.Equal(t, tt.want, intToRoman(tt.args.num))
 		})
 	}
 }

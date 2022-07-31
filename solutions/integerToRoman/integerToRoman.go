@@ -20,7 +20,7 @@ type IntToRomanCmd struct {
 func NewIntToRomanCmd() *IntToRomanCmd {
 	containerWithMostWaterCmd := &IntToRomanCmd{
 		description: "https://leetcode.com/problems/integer-to-roman/",
-		fs:          flag.NewFlagSet("intToRomanCmd", flag.ContinueOnError),
+		fs:          flag.NewFlagSet("intToRoman", flag.ContinueOnError),
 	}
 
 	// Here we specify flags
@@ -47,7 +47,7 @@ func NewIntToRomanCmd() *IntToRomanCmd {
 		fmt.Println(aurora.BrightRed("Description:"))
 		fmt.Println("\t", containerWithMostWaterCmd.description)
 		fmt.Println(aurora.BrightRed("Usage:"))
-		fmt.Println("\tintToRomanCmd [options]")
+		fmt.Println("\tintToRoman [options]")
 		fmt.Println(aurora.BrightRed("Options:"))
 		fmt.Println(optionsTable.String())
 	}
