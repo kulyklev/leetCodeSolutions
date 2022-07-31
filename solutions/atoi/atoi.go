@@ -109,12 +109,7 @@ func myAtoi(s string) int {
 
 	}
 
-	res, err := strconv.Atoi(sb.String())
-
-	if err != nil {
-		fmt.Println("Convert string to int")
-		fmt.Println(err)
-	}
+	res, _ := strconv.Atoi(sb.String())
 
 	if res > math.MaxInt32 {
 		return math.MaxInt32

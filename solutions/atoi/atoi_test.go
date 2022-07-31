@@ -1,85 +1,101 @@
 package atoi
 
-import "testing"
+import (
+	"testing"
 
-func TestAtoi(t *testing.T) {
-	// Case 1
-	got := myAtoi("123")
-	want := 123
+	"github.com/stretchr/testify/assert"
+)
 
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
+// Success and failure markers.
+const (
+	success = "\u2713"
+	failed  = "\u2717"
+)
+
+func Test_myAtoi(t *testing.T) {
+	type args struct {
+		str string
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "Case 1",
+			args: args{
+				str: "123",
+			},
+			want: 123,
+		},
+		{
+			name: "Case 2",
+			args: args{
+				str: "-123",
+			},
+			want: -123,
+		},
+		{
+			name: "Case 3",
+			args: args{
+				str: "    123",
+			},
+			want: 123,
+		},
+		{
+			name: "Case 4",
+			args: args{
+				str: "   -123",
+			},
+			want: -123,
+		},
+		{
+			name: "Case 5",
+			args: args{
+				str: "0032",
+			},
+			want: 32,
+		},
+		{
+			name: "Case 6",
+			args: args{
+				str: "qwerty",
+			},
+			want: 0,
+		},
+		{
+			name: "Case 7",
+			args: args{
+				str: "1234 qwerty",
+			},
+			want: 1234,
+		},
+		{
+			name: "Case 8",
+			args: args{
+				str: "-1234 qwerty",
+			},
+			want: -1234,
+		},
+		{
+			name: "Case 9",
+			args: args{
+				str: "-91283472332",
+			},
+			want: -2147483648,
+		},
+		{
+			name: "Case 10",
+			args: args{
+				str: "91283472332",
+			},
+			want: 2147483647,
+		},
 	}
 
-	// Case 2
-	got = myAtoi("-123")
-	want = -123
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	// Case 3
-	got = myAtoi("    123")
-	want = 123
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	// Case 4
-	got = myAtoi("   -123")
-	want = -123
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	// Case 5
-	got = myAtoi("0032")
-	want = 32
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	// Case 6
-	got = myAtoi("qwerty")
-	want = 0
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	// Case 7
-	got = myAtoi("1234 qwerty")
-	want = 1234
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	// Case 8
-	got = myAtoi("-1234 qwerty")
-	want = -1234
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	// Case 9
-	got = myAtoi("-91283472332")
-	want = -2147483648
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	// Case 10
-	got = myAtoi("91283472332")
-	want = 2147483647
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.want, myAtoi(tt.args.str))
+		})
 	}
 }
