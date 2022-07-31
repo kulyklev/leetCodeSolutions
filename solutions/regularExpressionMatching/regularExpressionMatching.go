@@ -3,9 +3,10 @@ package regularExpressionMatching
 import (
 	"flag"
 	"fmt"
+	"os"
+
 	"github.com/alexeyco/simpletable"
 	"github.com/logrusorgru/aurora/v3"
-	"os"
 )
 
 type MyRegularExpressionMatchingCmd struct {

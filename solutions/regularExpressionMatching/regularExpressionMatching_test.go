@@ -1,6 +1,10 @@
 package regularExpressionMatching
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 // Success and failure markers.
 const (
@@ -153,18 +157,7 @@ func testMatchMultipleCharacters(t *testing.T) {
 			t.Run(scenario.description, func(t *testing.T) {
 				actual := isMatch(scenario.inputString, scenario.inputPattern)
 
-				if actual != scenario.expected {
-
-					if scenario.expected {
-						t.Fatalf("\t%s\tTest %d:\tExpected: %t. String: \"%s\" should match pattern: \"%s\".", failed, testID, scenario.expected, scenario.inputString, scenario.inputPattern)
-					} else {
-						t.Fatalf("\t%s\tTest %d:\tExpected: %t. String: \"%s\" should NOT match pattern: \"%s\".", failed, testID, scenario.expected, scenario.inputString, scenario.inputPattern)
-					}
-				}
-
-				t.Logf("\t%s\tTest %d:\tPattern matches.", success, testID)
-				/*require.Error(t, err)
-				assert.Equal(t, scenario.expectedError, err.Error())*/
+				assert.Equal(t, scenario.expected, actual)
 			})
 		}
 	}
