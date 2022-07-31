@@ -1,69 +1,81 @@
 package reverseInteger
 
-import "testing"
+import (
+	"testing"
 
-func TestReverseInteger(t *testing.T) {
-	/* Case 1 */
-	got := reverseInteger(123)
-	want := 321
+	"github.com/stretchr/testify/assert"
+)
 
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
+func Test_reverseInteger(t *testing.T) {
+	type args struct {
+		num int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "Case 1",
+			args: args{
+				num: 123,
+			},
+			want: 321,
+		},
+		{
+			name: "Case 2",
+			args: args{
+				num: 120,
+			},
+			want: 21,
+		},
+		{
+			name: "Case 3",
+			args: args{
+				num: 102,
+			},
+			want: 201,
+		},
+		{
+			name: "Case 4",
+			args: args{
+				num: -123,
+			},
+			want: -321,
+		},
+		{
+			name: "Case 5",
+			args: args{
+				num: -123,
+			},
+			want: -321,
+		},
+		{
+			name: "Case 6",
+			args: args{
+				num: -2147483648,
+			},
+			want: 0,
+		},
+		{
+			name: "Case 7",
+			args: args{
+				num: 2147483647,
+			},
+			want: 0,
+		},
+		{
+			name: "Case 8",
+			args: args{
+				num: 0,
+			},
+			want: 0,
+		},
 	}
 
-	/* Case 2 */
-	got = reverseInteger(120)
-	want = 21
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	///* Case 3 */
-	got = reverseInteger(102)
-	want = 201
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	///* Case 4 */
-	got = reverseInteger(-123)
-	want = -321
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	///* Case 5 */
-	got = reverseInteger(-120)
-	want = -21
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	///* Case 6 */
-	got = reverseInteger(-2147483648)
-	want = 0
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	///* Case 7 */
-	got = reverseInteger(2147483647)
-	want = 0
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
-
-	///* Case 8 */
-	got = reverseInteger(0)
-	want = 0
-
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.Equal(t, tt.want, reverseInteger(tt.args.num))
+		})
 	}
 }
